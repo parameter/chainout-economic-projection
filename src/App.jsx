@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  maximumFractionDigits: 0,
-})
+function formatNumber(value) {
+  const rounded = Math.round(Number(value) || 0)
+  return String(rounded).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+}
 
-const numberFormatter = new Intl.NumberFormat('en-US')
+function formatCurrency(value) {
+  return `${formatNumber(value)} SEK`
+}
 
 const initialInputs = {
   months: 24,
@@ -218,23 +219,23 @@ function App() {
       <section className="kpi-grid">
         <article>
           <h2>Users at End</h2>
-          <p>{numberFormatter.format(Math.round(totals.finalUsers))}</p>
+          <p>{formatNumber(totals.finalUsers)}</p>
         </article>
         <article>
           <h2>Paid Users at End</h2>
-          <p>{numberFormatter.format(Math.round(totals.finalPaidUsers))}</p>
+          <p>{formatNumber(totals.finalPaidUsers)}</p>
         </article>
         <article>
           <h2>Monthly Net Run Rate</h2>
-          <p>{currencyFormatter.format(totals.monthlyRunRate)}</p>
+          <p>{formatCurrency(totals.monthlyRunRate)}</p>
         </article>
         <article>
           <h2>Sponsor Monthly Revenue</h2>
-          <p>{currencyFormatter.format(totals.sponsorMonthly)}</p>
+          <p>{formatCurrency(totals.sponsorMonthly)}</p>
         </article>
         <article>
           <h2>Cumulative Net Revenue</h2>
-          <p>{currencyFormatter.format(totals.cumulativeRevenue)}</p>
+          <p>{formatCurrency(totals.cumulativeRevenue)}</p>
         </article>
       </section>
 
@@ -354,7 +355,7 @@ function App() {
             />
           </label>
           <label>
-            Subscription price ($)
+            Subscription price (SEK)
             <input
               type="number"
               min="0"
@@ -373,7 +374,7 @@ function App() {
             />
           </label>
           <label>
-            Sponsor fee / challenge ($)
+            Sponsor fee / challenge (SEK)
             <input
               type="number"
               min="0"
@@ -382,7 +383,7 @@ function App() {
             />
           </label>
           <label>
-            Challenge costs / month ($)
+            Challenge costs / month (SEK)
             <input
               type="number"
               min="0"
@@ -412,13 +413,13 @@ function App() {
                 {projection.map((row) => (
                   <tr key={row.month}>
                     <td>{row.month}</td>
-                    <td>{numberFormatter.format(Math.round(row.totalUsers))}</td>
-                    <td>{numberFormatter.format(Math.round(row.paidUsers))}</td>
-                    <td>{currencyFormatter.format(row.subscriptionRevenue)}</td>
-                    <td>{currencyFormatter.format(row.sponsorRevenue)}</td>
-                    <td>{currencyFormatter.format(row.challengeCost)}</td>
-                    <td>{currencyFormatter.format(row.netRevenue)}</td>
-                    <td>{currencyFormatter.format(row.cumulativeRevenue)}</td>
+                    <td>{formatNumber(row.totalUsers)}</td>
+                    <td>{formatNumber(row.paidUsers)}</td>
+                    <td>{formatCurrency(row.subscriptionRevenue)}</td>
+                    <td>{formatCurrency(row.sponsorRevenue)}</td>
+                    <td>{formatCurrency(row.challengeCost)}</td>
+                    <td>{formatCurrency(row.netRevenue)}</td>
+                    <td>{formatCurrency(row.cumulativeRevenue)}</td>
                   </tr>
                 ))}
               </tbody>
