@@ -1,0 +1,156 @@
+.app-shell {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.header p {
+  margin-top: 0.5rem;
+  color: #9ca3af;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.8rem;
+}
+
+.kpi-grid article {
+  padding: 0.9rem;
+  border: 1px solid #30363d;
+  border-radius: 0.6rem;
+  background: #11151b;
+}
+
+.kpi-grid h2 {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.kpi-grid p {
+  margin: 0.5rem 0 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1rem;
+}
+
+.controls {
+  padding: 1rem;
+  border: 1px solid #30363d;
+  border-radius: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  background: #11151b;
+}
+
+.controls h2,
+.results h2 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: #d1d5db;
+}
+
+.controls input {
+  border: 1px solid #374151;
+  border-radius: 0.45rem;
+  padding: 0.5rem 0.6rem;
+  background: #0d1117;
+  color: #f9fafb;
+}
+
+.controls select,
+.controls button {
+  border: 1px solid #374151;
+  border-radius: 0.45rem;
+  padding: 0.5rem 0.6rem;
+  background: #0d1117;
+  color: #f9fafb;
+}
+
+.controls button {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.persistence {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.3rem;
+  border-bottom: 1px solid #2d333b;
+}
+
+.status-text {
+  text-align: left;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+.results {
+  padding: 1rem;
+  border: 1px solid #30363d;
+  border-radius: 0.6rem;
+  background: #11151b;
+  min-width: 0;
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+thead {
+  background: #161b22;
+}
+
+th,
+td {
+  text-align: right;
+  border-bottom: 1px solid #2d333b;
+  padding: 0.45rem 0.4rem;
+  white-space: nowrap;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+
+@media (max-width: 1024px) {
+  .app-shell {
+    padding: 1rem;
+  }
+
+  .content {
+    grid-template-columns: 1fr;
+  }
+}
